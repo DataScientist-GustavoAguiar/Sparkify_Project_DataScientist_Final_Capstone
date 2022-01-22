@@ -173,8 +173,6 @@ Production Engineer | Master's Student in Production Engineering and Computation
 
 ## 7. Credits and Acknowledgements
 
-Thanks <a href="https://www.udacity.com" target="_blank">Udacity</a> for letting me use their logo as favicon for this web app.
-
 I want to express my gratitude to Udacity reviewers for their genuine efforts and time. Their invaluable advice and feedback immensely helped me in completing this project.
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
