@@ -4,8 +4,6 @@ The purpose of this project is to use log files from users to anticipate whether
 
 <p align="left">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/DataScientist-GustavoAguiar/Sparkify_Project_DataScientist_Final_Capstone?color=%2304D361">
-
-  <img alt="Repository size" src="https://github-size-badge.herokuapp.com/DataScientist-GustavoAguiar/Sparkify_Project_DataScientist_Final_Capstone.svg">
   
   <a href="https://rocketseat.com.br">
     <img alt="made by Gustavo Aguiar" src="https://img.shields.io/badge/made%20by-Gustavo-%237519C1">
