@@ -144,7 +144,7 @@ Given the business context and the results presented in the EDA section, we can 
 .
 ├── Sparkify_Final.ipynb ------------------------# MAIN PROJECT NOTEBOOK
 ├── README.md ------------------------# README FILE
-├── LICENCE.md -------------------------------# LICENCE FILE
+├── LICENSE.md -------------------------------# LICENCE FILE
 ├── model_gbt_best -----------# SAVED PYSPARK ML MODEL
 
 </pre>
