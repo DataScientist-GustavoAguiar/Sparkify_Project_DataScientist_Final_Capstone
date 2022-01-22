@@ -2,6 +2,8 @@
 
 The purpose of this project is to use log files from users to anticipate whether or not they would cancel their Sparkify account. The Sparkify service is a fictitious music service established by udacity to spoof the log files of actual music services like Spotify. A user can visit a variety of pages and engage in a variety of interactions, such as clicking Next Song, watching an advertisement, upgrading, or downgrading. The log files also contain user-specific information, such as the user's location and the user agent they are using to access the service.
 
+Medium article: https://medium.com/@gustavoaguiar_21700/sparkify-ml-project-capstone-project-for-udacitys-nanodegree-in-data-science-d5bb58dfac3b
+
   <a href="https://rocketseat.com.br">
     <img alt="made by Gustavo Aguiar" src="https://img.shields.io/badge/made%20by-Gustavo-%237519C1">
   </a>
