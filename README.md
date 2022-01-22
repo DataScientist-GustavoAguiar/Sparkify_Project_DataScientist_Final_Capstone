@@ -1,6 +1,6 @@
 # Sparkify Project (Udacity Data Scientist Final).
 
-In this project, I'm analyzing disaster data from Figure Eight using my Data Scientist skills. The Extract, Transform, and Load (ETL) process, Natural Language Processing (NLP), and Machine Learning Pipeline are used to build the classifier model for disaster messages. The project also includes a web app that allows an emergency worker to enter a new message and receive classification results in a variety of categories. It can be useful in determining which messages require immediate attention in the event of a disaster.
+The purpose of this project is to use log files from users to anticipate whether or not they would cancel their Sparkify account. The Sparkify service is a fictitious music service established by udacity to spoof the log files of actual music services like Spotify. A user can visit a variety of pages and engage in a variety of interactions, such as clicking Next Song, watching an advertisement, upgrading, or downgrading. The log files also contain user-specific information, such as the user's location and the user agent they are using to access the service.
 
 <p align="left">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/DataScientist-GustavoAguiar/Disaster_Response_App?color=%2304D361">
@@ -101,21 +101,11 @@ Split the full dataset into train, test, and validation sets. Test out several o
 
 ### 3.1. Metrics
 
-For the machine learning model evaluation, selecting the appropriate metrics is critical. The issue is that the class of churned users is unbalanced due to the dataset's unequal distribution. In the situation of unequal classes, accuracy is misleading and should not be used. Instead, we'll employ precision-recall metrics. The precision indicates the percentage of churned users we successfully identified among all churned users, whereas the recall indicates the percentage of churned users we successfully identified among all churned users:
+For the machine learning model evaluation, selecting the appropriate metrics is critical. The issue is that the class of churned users is unbalanced due to the dataset's unequal distribution. In the situation of unequal classes, accuracy is misleading and should not be used. Instead, we'll employ precision-recall metrics. The precision indicates the percentage of churned users we successfully identified among all churned users, whereas the recall indicates the percentage of churned users we successfully identified among all churned users.
 
-> precision = $\frac{TP}{TP+FP}$
+In most cases, the classes aren't distributed uniformly. There will always be a grey zone where classes are jumbled together since we cannot always clearly differentiate all points of a positive class from all points of a negative class. As a result, there is an inverse relationship between precision and recall: raising one parameter (precision or recall) decreases the other (recall or precision). The precision-recall tradeoff is what it's called. True positives are correctly identified churned users, false positives are non-churned users incorrectly identified as churned users, and false negatives are churned users incorrectly identified as non-churned users, and FN are false negatives are churned users incorrectly identified as non-churned users.
 
-> recall = $\frac{TP}{TP+FN}$
-
-True positives are correctly identified churned users, false positives are non-churned users incorrectly identified as churned users, and false negatives are churned users incorrectly identified as non-churned users, and FN are false negatives are churned users incorrectly identified as non-churned users.
-
-In most cases, the classes aren't distributed uniformly. There will always be a grey zone where classes are jumbled together since we cannot always clearly differentiate all points of a positive class from all points of a negative class. As a result, there is an inverse relationship between precision and recall: raising one parameter (precision or recall) decreases the other (recall or precision). The precision-recall tradeoff is what it's called.
-
-We want to establish a compromise between the precision and recall metrics in this case. Neither too many false positives nor too many false negatives are desirable. As a result, we'll utilize F1-score as our primary statistic, which is defined as:
-
-> F1 = $2 * \frac{precision*recall}{precision+recall}$
-
-F1 is the harmonic mean of precision and recall; it combines the two metrics into a single metric that gives them equal weight - just what we need.
+We want to establish a compromise between the precision and recall metrics in this case. Neither too many false positives nor too many false negatives are desirable. As a result, we'll utilize F1-score as our primary statistic, which is defined as harmonic mean of precision and recall; it combines the two metrics into a single metric that gives them equal weight - just what we need.
 
 <a id='summary'></a>
 
