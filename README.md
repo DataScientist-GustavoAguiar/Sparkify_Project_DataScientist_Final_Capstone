@@ -17,11 +17,6 @@ The purpose of this project is to use log files from users to anticipate whether
 
 - [Overview](#overview)
   - [Problem Statement](#problem_statement)
-- [Project Structure](#structure)
-  - [Load and Clean Dataset](#load_and_clean)
-  - [Exploratory Data Analysis](#eda)
-  - [Feature Engineering](#feature_engineering)
-  - [Modeling](#modeling)
 - [Conclusion](#conclusion)
   - [Metrics](#metrics)
   - [Results](#summary)
@@ -52,54 +47,22 @@ We have a JSON log of all actions taken by Sparkify users over a two-month perio
 
 This is a Customer Churn Prediction Problem , there are so many similar projects, such as [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/c/kkbox-churn-prediction-challenge) competition from [Kaggle](https://www.kaggle.com).
 
-As a result, our job is to mine the customers' data and implement an appropriate model to predict customer churn in the following steps:
+Our job is to mine the customers' data and implement an appropriate model to predict customer churn in the following steps:
 
-- Clean up the data: Analyze the NaN values, check the data types, and remove duplicates.
-- EDA: Exploratory data analysis to examine feature distributions and correlations with key labels (churn).
-- Feature engineering: Identifying and extracting customer features and customer behavior features to be considered in our model
-- Train and measure models: I used Gradient Boost Tree classifier, Logistic Regression classifier, and Random Forest classifiers to train a baseline model and tune a better model from the best of them. It is worth noting that this data is unbalanced due to lower churn rates, so I chose 'f1 score' as a metric to assess model performance.
-
-![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
-
-<a id='structure'></a>
-
-## 2. Project Structure
-
-There are four main sections in this project:
-
-<a id='load_and_clean'></a>
-
-### 2.1. Load and Clean Dataset
-
-Load and clean the dataset, checking for invalid or missing data - for example, records without userids or sessionids.
-
-<a id='eda'></a>
-
-### 2.2. Exploratory Data Analysis (EDA)
-
-Perform EDA by loading a small subset of the data and doing basic manipulations within Spark.
-
-<a id='feature_engineering'></a>
-
-### 2.3. Feature Engineering
-
-Once you've familiarized yourself with the data, build out the features you find promising to train your model on.
-
-<a id='modeling'></a>
-
-### 2.4. Modeling
-
-Split the full dataset into train, test, and validation sets. Test out several of the machine learning methods you learned. Evaluate the accuracy of the various models, tuning parameters as necessary. Determine your winning model based on test accuracy and report results on the validation set.
+- Clean up the data: Load and clean the dataset, checking for invalid or missing data — for example, records without userids or sessionids. Also check the data types, and remove duplicates.
+- EDA: Perform Exploratory Data Analysis by loading a small subset of the data and doing manipulations within Spark to examine feature distributions and correlations with key labels (churn). Perform EDA by loading a small subset of the data and doing basic manipulations within Spark.
+- Feature engineering: Identifying and extracting customer features and customer behavior features to be considered in our model (the features you find promising to train your model on).
+- ML Modeling: Split the full dataset into train, test, and validation sets. Test out several of the machine learning methods. Evaluate the accuracy of the various models, tuning parameters as necessary. Determine your winning model based on test accuracy and report results on the validation set. We used Gradient Boost Tree classifier, Logistic Regression classifier, and Random Forest classifiers to train a baseline model and tune a better model from the best of them. It is worth noting that this data is unbalanced due to lower churn rates, so we chose ‘f1 score’ as a metric to assess model performance.
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <a id='conclusion'></a>
 
-## 3. Conclusions
+## 2. Conclusions
 
 <a id='metrics'></a>
 
-### 3.1. Metrics
+### 2.1. Metrics
 
 For the machine learning model evaluation, selecting the appropriate metrics is critical. The issue is that the class of churned users is unbalanced due to the dataset's unequal distribution. In the situation of unequal classes, accuracy is misleading and should not be used. Instead, we'll employ precision-recall metrics. The precision indicates the percentage of churned users we successfully identified among all churned users, whereas the recall indicates the percentage of churned users we successfully identified among all churned users.
 
@@ -109,39 +72,39 @@ We want to establish a compromise between the precision and recall metrics in th
 
 <a id='summary'></a>
 
-### 3.2. Results
+### 2.2. Results
 
 The initial full feature set was selected based on the general statistical method results and the previously defined delta threshold. Correlation tests between the selected features revealed that some of them had a significant relationship. As a result, some of the features from our initial set were removed.
-
-I have tested three well-known ML models, which are: Random Forest, Gradient Boost Tree, and Logistic Regression with the same features selected after the correlation analysis (22). After that I selected the model which achieved better results considering the metrics assessed (_F1 = 0.9998_), and tried to optimize the already excellent results trough gridsearch and cross-validation. The best model was Gradient Boost Tree and the best hyperparameters were:
-
+  
+I have tested three well-known ML models, which are: Random Forest, Gradient Boost Tree, and Logistic Regression with the same features selected after the correlation analysis (28). After that I selected the model which achieved better results considering the metrics assessed (F1 = 0.9998), and tried to optimize the already excellent results trough gridsearch and cross-validation. The best model was Gradient Boost Tree and the best hyperparameters were:
+  
 * maxIter=20
 * maxDepth=5
 * maxBins=32
-
-The following were the model's five most important features:
-
+  
+The following were the model’s five most important features:
+  
 * AvgSessionGap (~35%)
 * AddFriendPerSessionHour (~10%)
 * SessionCount (~9%)
 * LogoutPerSessionHour (~7%)
 * AddToPlaylistCount (~5%)
 * ThumbsDownPerSessionHour (~5%)
-
-Given the business context and the results presented in the EDA section, we can conclude (given our model's excellent results) that what most contributes to predicting a churning user is:
-
-* **shorter time of inactivity between sessions**
-* **fewer friend additions per session hour (i.e. less friends added)**
-* **fewer sessions**
-* **more logouts per session hour**
-* **fewer songs were added to their playlists**
-* **more interactions with thumbs down (i.e. dislike more frequently the songs played)**
+  
+Given the business context and the results presented in the EDA section, we can conclude (given our model’s excellent results) that what most contributes to predicting a churning user is:
+  
+* shorter time of inactivity between sessions
+* fewer friend additions per session hour (i.e. less friends added)
+* fewer sessions
+* more logouts per session hour
+* fewer songs were added to their playlists
+* more interactions with thumbs down (i.e. dislike more frequently the songs played)
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <a id='files'></a>
 
-## 4. Files
+## 3. Files
 
 <pre>
 .
@@ -154,7 +117,7 @@ Given the business context and the results presented in the EDA section, we can 
 
 <a id='sw'></a>
 
-## 5. Software Requirements
+## 4. Software Requirements
 
 This project uses **Python 3.6.3** and the necessary libraries are mentioned in _requirements.txt_.
 The standard libraries which are not mentioned in _requirements.txt_ are _datetime_, _time_ and _math_.
@@ -163,7 +126,7 @@ The standard libraries which are not mentioned in _requirements.txt_ are _dateti
 
 <a id='author'></a>
 
-## 6. Author
+## 5. Author
 
 Gustavo Aguiar 👋🏽 Get in Touch!
 
@@ -174,7 +137,7 @@ Production Engineer | Master's Student in Production Engineering and Computation
 
 <a id='credits'></a>
 
-## 7. Credits and Acknowledgements
+## 6. Credits and Acknowledgements
 
 I want to express my gratitude to Udacity reviewers for their genuine efforts and time. Their invaluable advice and feedback immensely helped me in completing this project.
 
@@ -182,5 +145,5 @@ I want to express my gratitude to Udacity reviewers for their genuine efforts an
 
 <a id='license'></a>
 
-## 8. License
+## 7. License
 This project is under the license [MIT](./LICENSE).
